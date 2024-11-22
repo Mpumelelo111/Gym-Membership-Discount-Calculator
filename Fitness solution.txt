@@ -1,0 +1,65 @@
+package com.mycompany.classes;
+
+import java.util.Scanner;
+
+public class Classes {
+
+    public static void main(String[] args) {
+        Display();
+        Info();
+    }
+
+    // Displays the discount rules
+    public static void Display() {
+        System.out.println("The cost of becoming a membership is as follows:");
+        System.out.println("1. Senior citizen discount (age 60 and above): 30%");
+        System.out.println("2. Membership paid for 12 or more months in advance: 15%");
+        System.out.println("3. More than 5 personal training sessions: 20%\n");
+    }
+
+    // Collects user information
+    public static void Info() {
+        Scanner console = new Scanner(System.in);
+
+        // User input
+        System.out.println("Enter your age: ");
+        int age = console.nextInt();
+
+        System.out.println("Enter price of Gym membership: ");
+        double price = console.nextDouble();
+
+        System.out.println("Enter months of membership: ");
+        double months = console.nextDouble();
+
+        System.out.println("Enter number of personal training sessions: ");
+        double numPersonal = console.nextDouble();
+
+        // Calculate final membership cost
+        double finalCost = calculateCost(age, price, months, numPersonal);
+
+        // Display final cost
+        System.out.printf("Your final membership cost is: $%.2f%n", finalCost);
+    }
+
+    // Calculates the membership cost after applying discounts
+    public static double calculateCost(int age, double price, double months, double numPersonal) {
+        double discountedPrice = price;
+
+        // Apply senior citizen discount (30%)
+        if (age >= 60) {
+            discountedPrice -= price * 0.30; // Subtract 30% from the price
+        }
+
+        // Apply advance payment discount (15%)
+        if (months >= 12) {
+            discountedPrice -= price * 0.15; // Subtract 15% from the price
+        }
+
+        // Apply personal training discount (20%)
+        if (numPersonal > 5) {
+            discountedPrice -= price * 0.20; // Subtract 20% from the price
+        }
+
+        return discountedPrice;
+    }
+}
